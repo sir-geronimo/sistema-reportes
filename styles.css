@@ -57,12 +57,15 @@ display: none;
 
 .ttitle{
   font-family: 'Product Sans', Arial, sans-serif;
+  font-size: large;
 }
 
 
 .drawerbg{
 height:180px;
 width:100%;
+background-image: url("https://empleosclasificados.com/wp-content/uploads/2018/03/seguridad-en-transito.jpg");
+background-size: 100% 100%;
 background-color:#3F51B5;
 display:block;
   position: relative;
@@ -107,9 +110,9 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-background-image: url("http://multisistemasdeseguridad.com/wp-content/uploads/2016/12/unnamed-5.jpg");
+/*background-image: url("http://multisistemasdeseguridad.com/wp-content/uploads/2016/12/unnamed-5.jpg");*/
 background-size: 100% 100%;
-/*background-color:#fff;  change if the mask should have another color then white */
+background-color:#718792;
 z-index:99; /* makes sure it stays on top */
 }
 
@@ -117,7 +120,7 @@ z-index:99; /* makes sure it stays on top */
 font-family: 'Product Sans', Arial, sans-serif;
 font-size: 2.5em;
 position: fixed;
-top: 50%;
+top: 35%;
 left: 50%;
 /* bring your own prefixes */
 transform: translate(-50%, -50%);
@@ -126,7 +129,7 @@ transform: translate(-50%, -50%);
        font-family: 'Product Sans', Arial, sans-serif;
 font-size: 1.5em;
 position: fixed;
-top: 70%;
+top: 50%;
 left: 50%;
 /* bring your own prefixes */
 transform: translate(-50%, -50%);
