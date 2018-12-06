@@ -23,7 +23,8 @@ function getById(id, collection) {
     });
 }
 
-function save(id, collection) {
+function save(collection, id) {
     var docRef = db.collection(collection).doc(id);
 
+    // Tobe continued
 }
