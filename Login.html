@@ -5,12 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Iniciar Sesión</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href = "./img/logo.png" rel="icon" type="image/png">
     <link rel="stylesheet" type="text/css" media="screen" href="./bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="./css/main.css" />
     <script src="./jquery/js/jquery-3.3.1.slim.min.js"></script>
     <script src="./js/main.js"></script>
 </head>
-<body>
-    
+<body class="bg-dark">
+        <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="text-center text-white mb-4">Iniciar Sesión</h2>
+                        <div class="row">
+                            <div class="col-md-6 mx-auto">
+            
+                                <div class="card">
+                                    <div class="card-body">
+                                    
+                                        <div class="text-center p-2 pb-4">
+                                            <img src="https://via.placeholder.com/250x150" alt="login-img" width="250" height="150" class="rounded mx-auto d-block">
+                                        </div>
+
+                                        <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST">
+
+                                            <div class="form-group">
+                                                <label for="uname1">Usuario</label>
+                                                <input type="text" class="form-control form-control-lg " name="uname1" id="uname1" required="">
+                                                <div class="invalid-feedback">Digite su nombre de usuario!</div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Contraseña</label>
+                                                <input type="password" class="form-control form-control-lg" id="pwd1" required="" autocomplete="current-password">
+                                                <div class="invalid-feedback">Digite su contraseña!</div>
+                                            </div>
+
+                                            <div style="text-align:right;">
+                                                <button type="submit" class="btn btn-lg" style="background-color: #1976D2; color: white;" id="btnLogin">Iniciar Sesión</button>        
+                                            </div>
+                                        </form>
+                                        <div class="text-center pt-3">
+                                            <a href="./Register.html" class="card-link">Registrarse</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
 </html>
