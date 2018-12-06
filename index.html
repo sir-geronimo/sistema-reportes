@@ -1,73 +1,21 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
-<html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
-        <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-app.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.5.0/firebase-firestore.js"></script>
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>TODO List</title>
+</head>
+<body>
     <h1>My TODO List</h1>
 
     <div class="content">
-        <form id="add-to-list">
-            <input placeholder="title of the task" type="text" name="title">
-            <input placeholder="to be completed on" type="date" name="dateToComplete">
-            <button type="submit">Add</button>
-        </form>
-        <ul id="list">
-        </ul>
+
     </div>
     
 
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyAaZwCgYbJkWVCcriKpB8WTCU7KYGIcoK4",
-            authDomain: "todo-list-514dc.firebaseapp.com",
-            databaseURL: "https://todo-list-514dc.firebaseio.com",
-            projectId: "todo-list-514dc",
-            storageBucket: "todo-list-514dc.appspot.com",
-            messagingSenderId: "912053913603"
-        };
-        firebase.initializeApp(config);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true})
-    </script>
+    <script></script>
     <script src="app.js"></script>
-        </div>
-        <script type="text/javascript" src="cordova.js"></script>
-    </body>
+</body>
 </html>
