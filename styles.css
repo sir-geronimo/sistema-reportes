@@ -107,7 +107,9 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-background-color:#fff; /* change if the mask should have another color then white */
+background-image: url("http://multisistemasdeseguridad.com/wp-content/uploads/2016/12/unnamed-5.jpg");
+background-size: 100% 100%;
+/*background-color:#fff;  change if the mask should have another color then white */
 z-index:99; /* makes sure it stays on top */
 }
 
