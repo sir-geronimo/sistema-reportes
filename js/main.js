@@ -1,3 +1,18 @@
+
+var btn = document.getElementById("btn");
+btn.addEventListener("click", function(){
+  getAll("reports");
+});
+
+var today = new Date() 
+data = {
+  'date' : today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() ,
+  "description" : "Test222222",
+  "latitude" : 18.550,
+  "longitude" : -68.550,
+  "collection" : "reports"
+};
+
 $( document ).ready(function() {
 
     $("#btnLogin, #btnRegister").click(function(event) {
@@ -17,7 +32,4 @@ $( document ).ready(function() {
         
         form.addClass('was-validated');
     });
-
-
-
 });

@@ -23,28 +23,35 @@ function getById(id, collection) {
     });
 }
 
-function save(id, data) {
+function saveReport(data, id) {
     
     // Tobe continued
-    if (id === null) {
-        return add(data);    
+    if (id == null) {
+        return addReport(data);    
     } else {
-        return update(id, data);
+        return updateReport(id, data);
     }
 }
 
-function add(data) {
+function addReport(data) {
     db.collection(data['collection']).add({
         date: data['date'],
         description: data['description'],
         location: new firebase.firestore.GeoPoint(data['latitude'], data['longitude']),
-        userId: request.auth.uid
+        userId: "wySJyZe5P2XzFCYb7rxs"
     });
 
     return "Done add"
 }
 
-function update(id, data) {
-    console.log(id, data);
+function updateReport(id, data) {
+    var docRef = db.collection(data['collection']).doc(id);
+
+    docRef.set({
+        date: data['date'],
+        description: data['description'],
+        location: new firebase.firestore.GeoPoint(data['latitude'], data['longitude']),
+        userId: "wySJyZe5P2XzFCYb7rxs"
+    });
     return "Done update"
 }
