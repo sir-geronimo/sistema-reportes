@@ -23,7 +23,7 @@ function getById(id, collection) {
     });
 }
 
-function save(id, data) {
+function save(data, id) {
     
     // Tobe continued
     if (id === null) {

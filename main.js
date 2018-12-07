@@ -3,7 +3,11 @@ toastGroupTemplate.showToast = function() {
   document.querySelector('#toast').show();
 }
 
-let btn = document.getElementById("btn");
+var btn = document.getElementById("btn-test");
+btn.addEventListener("click", function(){
+  console.log('clicked');
+});
+
 var today = new Date() 
 data = {
   'date' : today.getFullYear()+'/'+(today.getMonth()+1)+'/'+today.getDate() ,
@@ -13,6 +17,3 @@ data = {
   "collection" : "reports"
 };
 
-btn.addEventListener("click", () => {
-  console.log(save(data));
-});
