@@ -243,6 +243,7 @@
       //]]>
       </script>
 
+      <!-- Firebase init script -->
       <script>
         // Initialize Firebase
         var config = {
@@ -259,34 +260,32 @@
       </script>
 
       <paper-dialog id="dialog">
-        
-    <iron-form id="form1">
-    <paper-dialog-scrollable>
-    <h2>Reportar tragedia</h2></br>
-    <form action="/foo" method="get">
-      <div id="m">
-        <div id="loc"></div>
-      </div>
-    <div class="container" style="display: flex; margin-bottom: 5%;">
-      <paper-input type="text" id="lat" required label="Latitud"></paper-input>
-      <paper-input type="text" id="long" required label="Longitud"></paper-input><br>
-    </div>
-      <paper-checkbox name="food" value="pizza" checked>Robo</paper-checkbox>
-      <paper-checkbox name="food" value="cheese" required style="margin-left: 15%;">Asaltos</paper-checkbox><br>
-      <paper-checkbox name="food" value="cheese" required>Asesinatos</paper-checkbox>
-      <paper-checkbox name="food" value="cheese" required style="margin-left: 6%;">Acoso/Violacion</paper-checkbox>
-      <br><br>
-      <iron-autogrow-textarea rows="3" placeholder="Detalle del suceso"></iron-autogrow-textarea>
-      <paper-input type="text" id="dir" required label="Direccion"></paper-input>
-      <br>
-      <paper-button raised onclick="form1.submit()">Enviar</paper-button>
-      <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
-
-    </form>
-    </paper-dialog-scrollable>
-    </iron-form>
-
+        <iron-form id="form1">
+          <paper-dialog-scrollable>
+            <h2>Reportar tragedia</h2></br>
+            <form action="/foo" method="get">
+              <div id="m">
+                <div id="loc"></div>
+              </div>
+              <div class="container" style="display: flex; margin-bottom: 5%;">
+                <paper-input type="text" id="lat" required label="Latitud"></paper-input>
+                <paper-input type="text" id="long" required label="Longitud"></paper-input><br>
+              </div>
+              <paper-checkbox name="food" value="pizza" checked>Robo</paper-checkbox>
+              <paper-checkbox name="food" value="cheese" required style="margin-left: 15%;">Asaltos</paper-checkbox><br>
+              <paper-checkbox name="food" value="cheese" required>Asesinatos</paper-checkbox>
+              <paper-checkbox name="food" value="cheese" required style="margin-left: 6%;">Acoso/Violacion</paper-checkbox>
+              <br><br>
+              <iron-autogrow-textarea rows="3" placeholder="Detalle del suceso"></iron-autogrow-textarea>
+              <paper-input type="text" id="dir" required label="Direccion"></paper-input>
+              <br>
+              <paper-button raised onclick="form1.submit()">Enviar</paper-button>
+              <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
+            </form>
+          </paper-dialog-scrollable>
+        </iron-form>
       </paper-dialog>
+      
       <script type="text/javascript">
           function initMap2() {
               var loc = new google.maps.Map(document.getElementById('loc'), {
