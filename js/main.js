@@ -1,7 +1,7 @@
 
 var btn = document.getElementById("btn");
 btn.addEventListener("click", function(){
-  console.log(saveReport(data, "NqHTqAkjWDeO2X6913mT"));
+  getAll("reports");
 });
 
 var today = new Date() 
