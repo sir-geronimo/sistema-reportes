@@ -248,9 +248,10 @@
 
       <!-- Add report dialog -->
       <paper-dialog id="dialog">
+        <paper-dialog-scrollable>
         <iron-form id="form1">
           <h2>Reportar tragedia</h2></br>
-          <paper-dialog-scrollable>
+          
             <form action="/foo" method="get">
               <div id="m">
                 <div id="loc"></div>
@@ -270,8 +271,9 @@
               <paper-button raised onclick="form1.submit()">Enviar</paper-button>
               <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
             </form>
-          </paper-dialog-scrollable>
+            <br>         
         </iron-form>
+        </paper-dialog-scrollable>
       </paper-dialog>
       
       <!-- Map embedded -->
