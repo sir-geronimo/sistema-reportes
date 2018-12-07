@@ -1,0 +1,131 @@
+<html>
+  <head>
+      <meta charset="utf-8">
+
+        <!-- Mobile Stuff -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="msapplication-tap-highlight" content="no">
+
+        <!-- Chrome on Android -->
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="application-name" content="SecuredCity">
+        <link rel="icon" sizes="192x192" href="img/picture.jpg">
+
+        <!-- Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="SecuredCity">
+        <link rel="apple-touch-icon" href="img/picture.jpg">
+
+        <!-- Windows 8 -->
+        <meta name="msapplication-TileImage" content="img/picture.jpg">
+        <meta name="msapplication-TileColor" content="#FFFFFF">
+
+        <!-- Chrome theme Color -->
+        <meta name="theme-color" content="#FFFFFF">
+
+        <!-- Fav icon -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <title>SecuredCity</title>
+        <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+        <!-- Roboto Font -->
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+        <!-- IMPORT ALL BASIC COMPONENTS FROM bower_components-->
+        <link rel="import" href="import.html">
+        <!-- Product sans Font-->
+        <link href='https://fonts.googleapis.com/css?family=Product+Sans' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="styles.css">
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
+
+  </head>
+  <body>
+   
+<button onclick="dialog.open()">Open</button>
+ 
+    <paper-dialog id="dialog">
+      
+ <iron-form id="form1">
+
+  <h2>Reportar tragedia</h2></br>
+  <form action="/foo" method="get">
+    <div id="m">
+      <div id="map"></div>
+    </div>
+
+    <paper-input type="text" id="lat" required label="Latitud"></paper-input>
+    <paper-input type="text" id="long" required label="Longitud"></paper-input><br>
+
+    <paper-checkbox name="food" value="pizza" checked>Robo</paper-checkbox><br>
+    <paper-checkbox name="food" value="cheese" required>Asaltos</paper-checkbox><br>
+    <paper-checkbox name="food" value="cheese" required>Asesinatos</paper-checkbox><br>
+    <paper-checkbox name="food" value="cheese" required>Acoso/Violacion</paper-checkbox>
+    <br>
+    <paper-dropdown-menu label="Cars" name="cars" required>
+      <paper-listbox class="dropdown-content" slot="dropdown-content">
+        <paper-item value="volvo">Volvo</paper-item>
+        <paper-item value="saab">Saab</paper-item>
+        <paper-item value="fiat">Fiat</paper-item>
+        <paper-item value="audi">Audi</paper-item>
+      </paper-listbox>
+    </paper-dropdown-menu>
+    <br><br>
+    <paper-button raised onclick="form1.submit()">Enviar</paper-button>
+    <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
+  </form>
+
+</iron-form>
+
+    </paper-dialog>
+   
+
+<br><br>
+<script>
+  form1.addEventListener('iron-form-submit', function(event) {
+    console.log(JSON.stringify(event.detail));
+  });
+
+     function initMap() {
+        var loc = new google.maps.Map(document.getElementById('loc'), {
+          center: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          zoom: 10
+        });
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          map: loc,
+          draggable: true
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function() {
+          $("#lat").val(marker.getPosition().lat());
+          $("#long").val(marker.getPosition().lng());
+        });
+      }
+</script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmpP5EeQXKQAxFb-GBrSxMaDdr8DOg5-w&callback=initMap">
+    </script>
+
+<style type="text/css">
+ #map {
+   height: 100%;
+   width: 100%;
+ }
+  #m {
+  display: table-cell;
+   height: 350px;
+   width: 400px;
+ }
+paper-checkbox{
+  margin-bottom: 3%;
+}
+  #form1 {
+  display: block;
+  }
+</style>
+  </body>
+</html>

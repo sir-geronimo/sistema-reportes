@@ -29,11 +29,12 @@
 
         <!-- Fav icon -->
         <link rel="shortcut icon" href="favicon.ico">
-        <!-- Title, DON'T FORGET TO CHANGE THE TITLE IN bower.js -->
+
         <title>SecuredCity</title>
         <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
         <!-- Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
         <!-- IMPORT ALL BASIC COMPONENTS FROM bower_components-->
         <link rel="import" href="import.html">
         <!-- Product sans Font-->
@@ -44,171 +45,273 @@
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
 
-    <style>
-      #map {
-        height: 100%;
-      }
-    </style>
+    <style type="text/css">
+ #map {
+   height: 100%;
+ }
+  #loc {
+   height: 100%;
+   width: 100%;
+ }
+  #m {
+  display: table-cell;
+   height: 350px;
+   width: 400px;
+ }
+paper-checkbox{
+  margin-bottom: 3%;
+}
+  #form1 {
+  display: block;
+  }
+</style>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
+
 
     </head>
 
     <body>
-      
 
-      <!-- Preloader (Splashscreen) -->
-      <div id="preloader">
+    <!-- Preloader (Splashscreen) -->
+    <div id="preloader">
         <paper-spinner class="loading" active></paper-spinner>
-        <div id="status">SecuredCity</div>
+      <div id="status">SecuredCity</div>
         <p class="by">Proyecto de seguridad ciudadana</p>
-      </div>
-      
-      <!-- Drawer -->
-      <paper-drawer-panel transition id="core_drawer_panel" touch-action>
-        <section id="section" drawer>
-          <div class="drawerbg"><p class="drawertitle">SecuredCity</p></div>
 
-          <paper-item focused="true">
-            <iron-icon icon="explore" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-            <paper-item-body>
-            <div class="item">Mapa de zonas</div>
-            </paper-item-body>
-          </paper-item>
-          <paper-item>
-            <iron-icon icon="star" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-            <paper-item-body>
-            <div class="item">Los mas peligrosos</div>
-            </paper-item-body>
-          </paper-item>
-            <p class="drawerhr">Opciones</p> 
-          <paper-item>
-            <iron-icon icon="help" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-            <paper-item-body>
-            <div class="item">Ayuda</div>
-            </paper-item-body>
-          </paper-item>
-          <paper-item>
-            <iron-icon icon="build" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-            <paper-item-body>
-            <div class="item">Ajustes</div>
-            </paper-item-body>
-          </paper-item>
+    </div>
+<!-- Drawer -->
+        <paper-drawer-panel transition id="core_drawer_panel" touch-action>
+      <section id="section" drawer>
+             <div class="drawerbg"><p class="drawertitle">SecuredCity</p></div>
+
+    <paper-item focused="true">
+      <iron-icon icon="explore" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+      <paper-item-body>
+      <div class="item">Mapa de zonas</div>
+      </paper-item-body>
+    </paper-item>
+    <paper-item>
+      <iron-icon icon="star" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+      <paper-item-body>
+      <div class="item">Los mas peligrosos</div>
+      </paper-item-body>
+    </paper-item>
+      <p class="drawerhr">Opciones</p> 
+    <paper-item>
+      <iron-icon icon="help" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+      <paper-item-body>
+      <div class="item">Ayuda</div>
+      </paper-item-body>
+    </paper-item>
+    <paper-item>
+      <iron-icon icon="build" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+      <paper-item-body>
+      <div class="item">Ajustes</div>
+      </paper-item-body>
+    </paper-item>
           <!-- Drawer Items -->
-          <paper-item>
-            <iron-icon icon="reply" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-            <paper-item-body>
-              <div class="item">Cerrar sesion</div>
-            </paper-item-body>
-          </paper-item>
-        </section>
-        
-        <!-- Main section -->
-        <section id="section1" main>
-          <paper-toolbar id="core_toolbar">
-            <paper-icon-button icon="menu" id="core_icon_button" paper-drawer-toggle></paper-icon-button>
-            <!-- Title in the Toolbar -->
-            <div id="div" flex class="ttitle">Mapa de zonas</div>
-          </paper-toolbar>
+     <paper-item>
+      <iron-icon icon="reply" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
+      <paper-item-body>
+      <div class="item">Cerrar sesion</div>
+      </paper-item-body>
+    </paper-item>
+            </section>
+<!-- Main section -->
 
-          <div id="map"></div>  
+      <section id="section1" main>
+        <paper-toolbar id="core_toolbar">
+          <paper-icon-button icon="menu" id="core_icon_button" paper-drawer-toggle></paper-icon-button>
+          <!-- Title in the Toolbar -->
+          <div id="div" flex class="ttitle">Mapa de zonas</div>
+        </paper-toolbar>
 
-          <script>
-              function initMap() {
-              
-              var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 3,
-                center: {lat: -28.024, lng: 140.887}
-              });
+  <div id="map"></div>  
 
-              // Create an array of alphabetical characters used to label the markers.
-              var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    <script>
 
-              var markers = locations.map(function(location, i) {
-                return new google.maps.Marker({
-                  position: location,
-                  label: labels[i % labels.length]
-                });
-              });
+     var locations = [
+        ['Robo', 'Monte Plata/Bayaguana', 18.755663, -69.636712, "descripcion", 2],
+        ['Asaltos', 'Santo Domingo Este/La caleta', 18.451022, -69.662779, "descripcion", 1],
+        ['Asesinatos', 'Santo Domingo/Los rios', 18.490402, -69.958537, "descripcion", 3],
+        ['Asaltos', 'San Juan/ San Juan de la maguana', 18.791253, -71.225053, "descripcion", 1],
+        ['Asesinatos', 'San Cristóbal/Palenque', 18.425169, -69.421936, "descripcion", 2],
+        ['Asesinatos', 'La vega/Rincon', 19.118231, -70.367653, "descripcion", 2],
+        ['Robo', 'Monte Cristi/Villa Garcia', 19.802750, -71.570664, "descripcion", 1],
+        ['Asesinatos', 'Puerto Plata/Sosúa', 19.722850, -70.493688, "descripcion", 2],
+        ['Robo', 'Puerto Plata/Sosúa', 19.722821, -70.493700, "descripcion", 1],
+        ['Asaltos', 'Puerto Plata/Sosúa', 19.722900, -70.493888, "descripcion", 2],
+        ['Asesinatos', 'Puerto Plata/Sosúa', 19.722800, -70.493900, "descripcion", 1],
+        ['Robo', 'Samana', 19.202861, -69.340292, "descripcion", 2],
+        ['Asaltos', 'Punta Cana/Veron', 18.596230, -68.444850, "descripcion", 1]
+        ];
 
-              // Add a marker clusterer to manage the markers.
-              var markerCluster = new MarkerClusterer(map, markers,
-                    {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-            }
-              var locations = [
-              {lat: -31.563910, lng: 147.154312},
-              {lat: -33.718234, lng: 150.363181},
-              {lat: -33.727111, lng: 150.371124},
-              {lat: -33.848588, lng: 151.209834},
-              {lat: -33.851702, lng: 151.216968},
-              {lat: -34.671264, lng: 150.863657},
-              {lat: -35.304724, lng: 148.662905},
-              {lat: -36.817685, lng: 175.699196},
-              {lat: -36.828611, lng: 175.790222},
-              {lat: -37.750000, lng: 145.116667},
-              {lat: -37.759859, lng: 145.128708},
-              {lat: -37.765015, lng: 145.133858},
-              {lat: -37.770104, lng: 145.143299},
-              {lat: -37.773700, lng: 145.145187},
-              {lat: -37.774785, lng: 145.137978},
-              {lat: -37.819616, lng: 144.968119},
-              {lat: -38.330766, lng: 144.695692},
-              {lat: -39.927193, lng: 175.053218},
-              {lat: -41.330162, lng: 174.865694},
-              {lat: -42.734358, lng: 147.439506},
-              {lat: -42.734358, lng: 147.501315},
-              {lat: -42.735258, lng: 147.438000},
-              {lat: -43.999792, lng: 170.463352}
-            ]
-          </script>
-          <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-          </script>
-          <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmpP5EeQXKQAxFb-GBrSxMaDdr8DOg5-w&callback=initMap">
-          </script>
+        var map, marker;
+        var markers = [];
+
+        function initMap() {
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(19.118231, -70.367653),
+          zoom: 8
+        });
+
+        for (var i = 0; i < locations.length; i++) {
+          var infowindow = new google.maps.InfoWindow({
+            content: "<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
+          });
+
+          marker = new google.maps.Marker({
+            position: {lat: locations[i][2], lng: locations[i][3]},
+            map: this.map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+              return function () {
+                  infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
+                  infowindow.open(Map, marker);
+              }
+          })(marker, i));
+
+          markers.push(marker);
+        }
+
+         var markerCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+      
+  }
+
+      function downloadUrl(url, callback) {
+        var request = window.ActiveXObject ?
+            new ActiveXObject('Microsoft.XMLHTTP') :
+            new XMLHttpRequest;
+
+        request.onreadystatechange = function() {
+          if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+          }
+        };
+
+        request.open('GET', url, true);
+        request.send(null);
+      }
+
+      function doNothing() {}
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmpP5EeQXKQAxFb-GBrSxMaDdr8DOg5-w&callback=initMap">
+    </script>
 
 
           <!-- Github FAB -->
-          <style is="custom-style">
-            paper-fab.blue {
-              --paper-fab-background: var(--paper-light-blue-800);
-              --paper-fab-keyboard-focus-background: var(--paper-light-blue-900);
-                position: fixed;
-                display: block;
-                right: 0;
-                bottom: 0;
-                margin-right: 40px;
-                margin-bottom: 40px;
-            }
-          </style>
-                
-          <a href="report.html">
-            <paper-fab icon="add" id="add" title="addZone" class="blue"></paper-fab>
-          </a>
-        </section>
-      </paper-drawer-panel>
+<style is="custom-style">
+  paper-fab.blue {
+    --paper-fab-background: var(--paper-light-blue-800);
+    --paper-fab-keyboard-focus-background: var(--paper-light-blue-900);
+      position: fixed;
+      display: block;
+      right: 0;
+      bottom: 0;
+      margin-right: 40px;
+      margin-bottom: 40px;
+  }
+</style>
+          
+<paper-fab icon="add" id="add" title="addZone" class="blue"></paper-fab>
 
-      <!-- Scripts -->
+      </section>
+    </paper-drawer-panel>
 
-      <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
-      <script src="loader.js"></script>
-      
-      <!-- FAB CLICK FUNCTION-->
-      <script>
-        $( '#fab' ).click(function() {window.location.replace("#");});
-      </script>
+        <!-- Scripts -->
+        <script src="loader.js"></script>
 
-      <!-- Loader (Splashscreen) -->
-      <script type="text/javascript">
+        <!-- FAB CLICK FUNCTION-->
+        <script>
+         $( '#add' ).click(function() {initMap2();dialog.open();});
+        </script>
+
+  <!-- Loader (Splashscreen) -->
+       <script type="text/javascript">
+    //<![CDATA[
         $(window).load(function() { // makes sure the whole site is loaded
             $('#status').delay(1600).fadeOut(); // will first fade out the loading animation
             $('#preloader').delay(1600).fadeOut('slow'); // will fade out the white DIV that covers the website.
             $('body').delay(1600).css({'overflow':'visible'});
         })
-      </script>
-      <br>
+    //]]>
+</script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+      apiKey: "AIzaSyACan7b7VE-vmJwDl8fsQznbI9d9hJ4hDY",
+      authDomain: "sistema-reportes.firebaseapp.com",
+      databaseURL: "https://sistema-reportes.firebaseio.com",
+      projectId: "sistema-reportes",
+      storageBucket: "sistema-reportes.appspot.com",
+      messagingSenderId: "873908911986"
+  };
+  firebase.initializeApp(config);
+  const db = firebase.firestore();
+  db.settings({ timestampsInSnapshots: true });
+</script>
+<script src="./js/api.js"></script>
+
+    <paper-dialog id="dialog">
       
+ <iron-form id="form1">
+ <paper-dialog-scrollable>
+  <h2>Reportar tragedia</h2></br>
+  <form action="/foo" method="get">
+    <div id="m">
+      <div id="loc"></div>
+    </div>
+<div class="container" style="display: flex; margin-bottom: 5%;">
+    <paper-input type="text" id="lat" required label="Latitud"></paper-input>
+    <paper-input type="text" id="long" required label="Longitud"></paper-input><br>
+</div>
+    <paper-checkbox name="food" value="pizza" checked>Robo</paper-checkbox>
+    <paper-checkbox name="food" value="cheese" required style="margin-left: 15%;">Asaltos</paper-checkbox><br>
+    <paper-checkbox name="food" value="cheese" required>Asesinatos</paper-checkbox>
+    <paper-checkbox name="food" value="cheese" required style="margin-left: 6%;">Acoso/Violacion</paper-checkbox>
+    <br><br>
+    <iron-autogrow-textarea rows="3" placeholder="Detalle del suceso"></iron-autogrow-textarea>
+    <paper-input type="text" id="dir" required label="Direccion"></paper-input>
+    <br>
+    <paper-button raised onclick="form1.submit()">Enviar</paper-button>
+    <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
+
+  </form>
+</paper-dialog-scrollable>
+</iron-form>
+
+    </paper-dialog>
+<script type="text/javascript">
+    function initMap2() {
+        var loc = new google.maps.Map(document.getElementById('loc'), {
+          center: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          zoom: 10
+        });
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          map: loc,
+          draggable: true
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function() {
+          $("#lat").val(marker.getPosition().lat());
+          $("#long").val(marker.getPosition().lng());
+        });
+      }
+</script>
 
       <script src="js/initdb.js"></script>
       <script src="js/api.js"></script>
       <script src="main.js"></script>
+
     </body>
 </html>
