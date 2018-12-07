@@ -29,11 +29,12 @@
 
         <!-- Fav icon -->
         <link rel="shortcut icon" href="favicon.ico">
-        <!-- Title, DON'T FORGET TO CHANGE THE TITLE IN bower.js -->
+
         <title>SecuredCity</title>
         <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
         <!-- Roboto Font -->
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,300italic,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
         <!-- IMPORT ALL BASIC COMPONENTS FROM bower_components-->
         <link rel="import" href="import.html">
         <!-- Product sans Font-->
@@ -44,11 +45,29 @@
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
 
-    <style>
-      #map {
-        height: 100%;
-      }
-    </style>
+    <style type="text/css">
+ #map {
+   height: 100%;
+ }
+  #loc {
+   height: 100%;
+   width: 100%;
+ }
+  #m {
+  display: table-cell;
+   height: 350px;
+   width: 400px;
+ }
+paper-checkbox{
+  margin-bottom: 3%;
+}
+  #form1 {
+  display: block;
+  }
+</style>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
+
 
     </head>
 
@@ -98,8 +117,6 @@
       <div class="item">Cerrar sesion</div>
       </paper-item-body>
     </paper-item>
-
-
             </section>
 <!-- Main section -->
 
@@ -110,25 +127,24 @@
           <div id="div" flex class="ttitle">Mapa de zonas</div>
         </paper-toolbar>
 
-
   <div id="map"></div>  
 
     <script>
 
      var locations = [
-        ['Quisqueya Sin Miseria', 'Monte Plata/Bayaguana', 18.755663, -69.636712, "img/CAIPI.jpg"],
-        ['Quisqueya Aprende Contigo', 'Santo Domingo Este/La caleta', 18.451022, -69.662779, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'Santo Domingo/Los rios', 18.490402, -69.958537, "img/image.jpg"],
-        ['Quisqueya Aprende Contigo', 'San Juan/ San Juan de la maguana', 18.791253, -71.225053, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'San Cristóbal/Palenque', 18.425169, -69.421936, "img/image.jpg"],
-        ['Quisqueya Sin Miseria', 'La vega/Rincon', 19.118231, -70.367653, "img/CAIPI.jpg"],
-        ['Quisqueya Aprende Contigo', 'Monte Cristi/Villa Garcia', 19.802750, -71.570664, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722850, -70.493688, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722821, -70.493700, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722900, -70.493888, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722800, -70.493900, "img/image.jpg"],
-        ['Quisqueya Aprende Contigo', 'Samana', 19.202861, -69.340292, "img/foto.jpg"],
-        ['Oficina Principal Quisqueya Aprende Contigo', 'Punta Cana/Veron', 18.596230, -68.444850, "img/foto.jpg"]
+        ['Robo', 'Monte Plata/Bayaguana', 18.755663, -69.636712, "descripcion", 2],
+        ['Asaltos', 'Santo Domingo Este/La caleta', 18.451022, -69.662779, "descripcion", 1],
+        ['Asesinatos', 'Santo Domingo/Los rios', 18.490402, -69.958537, "descripcion", 3],
+        ['Asaltos', 'San Juan/ San Juan de la maguana', 18.791253, -71.225053, "descripcion", 1],
+        ['Asesinatos', 'San Cristóbal/Palenque', 18.425169, -69.421936, "descripcion", 2],
+        ['Asesinatos', 'La vega/Rincon', 19.118231, -70.367653, "descripcion", 2],
+        ['Robo', 'Monte Cristi/Villa Garcia', 19.802750, -71.570664, "descripcion", 1],
+        ['Asesinatos', 'Puerto Plata/Sosúa', 19.722850, -70.493688, "descripcion", 2],
+        ['Robo', 'Puerto Plata/Sosúa', 19.722821, -70.493700, "descripcion", 1],
+        ['Asaltos', 'Puerto Plata/Sosúa', 19.722900, -70.493888, "descripcion", 2],
+        ['Asesinatos', 'Puerto Plata/Sosúa', 19.722800, -70.493900, "descripcion", 1],
+        ['Robo', 'Samana', 19.202861, -69.340292, "descripcion", 2],
+        ['Asaltos', 'Punta Cana/Veron', 18.596230, -68.444850, "descripcion", 1]
         ];
 
         var map, marker;
@@ -143,7 +159,7 @@
 
         for (var i = 0; i < locations.length; i++) {
           var infowindow = new google.maps.InfoWindow({
-            content: "<div class='content card card-user'><div class='container-fluid'><img style='width: 200px;border: 1px solid #336699;max-height:215px;overflow:auto;' src='"+locations[i][4]+"'><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
+            content: "<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
           });
 
           marker = new google.maps.Marker({
@@ -153,7 +169,7 @@
 
           google.maps.event.addListener(marker, 'click', (function (marker, i) {
               return function () {
-                  infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><img style='width: 200px;border: 1px solid #336699;max-height:215px;overflow:auto;' src='"+locations[i][4]+"'><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
+                  infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
                   infowindow.open(Map, marker);
               }
           })(marker, i));
@@ -211,19 +227,15 @@
     </paper-drawer-panel>
 
         <!-- Scripts -->
-
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
         <script src="loader.js"></script>
-        
+
         <!-- FAB CLICK FUNCTION-->
         <script>
-         $( '#fab' ).click(function() {window.location.replace("#");});
-
+         $( '#add' ).click(function() {initMap2();dialog.open();});
         </script>
-  <!-- Loader (Splashscreen) -->
 
-        
-          <script type="text/javascript">
+  <!-- Loader (Splashscreen) -->
+       <script type="text/javascript">
     //<![CDATA[
         $(window).load(function() { // makes sure the whole site is loaded
             $('#status').delay(1600).fadeOut(); // will first fade out the loading animation
@@ -249,5 +261,52 @@
 </script>
 <script src="./js/api.js"></script>
 
+    <paper-dialog id="dialog">
+      
+ <iron-form id="form1">
+ <paper-dialog-scrollable>
+  <h2>Reportar tragedia</h2></br>
+  <form action="/foo" method="get">
+    <div id="m">
+      <div id="loc"></div>
+    </div>
+<div class="container" style="display: flex; margin-bottom: 5%;">
+    <paper-input type="text" id="lat" required label="Latitud"></paper-input>
+    <paper-input type="text" id="long" required label="Longitud"></paper-input><br>
+</div>
+    <paper-checkbox name="food" value="pizza" checked>Robo</paper-checkbox>
+    <paper-checkbox name="food" value="cheese" required style="margin-left: 15%;">Asaltos</paper-checkbox><br>
+    <paper-checkbox name="food" value="cheese" required>Asesinatos</paper-checkbox>
+    <paper-checkbox name="food" value="cheese" required style="margin-left: 6%;">Acoso/Violacion</paper-checkbox>
+    <br><br>
+    <iron-autogrow-textarea rows="3" placeholder="Detalle del suceso"></iron-autogrow-textarea>
+    <paper-input type="text" id="dir" required label="Direccion"></paper-input>
+    <br>
+    <paper-button raised onclick="form1.submit()">Enviar</paper-button>
+    <paper-button raised onclick="form1.reset()">Limpiar</paper-button>
+
+  </form>
+</paper-dialog-scrollable>
+</iron-form>
+
+    </paper-dialog>
+<script type="text/javascript">
+    function initMap2() {
+        var loc = new google.maps.Map(document.getElementById('loc'), {
+          center: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          zoom: 10
+        });
+        var marker = new google.maps.Marker({
+          position: new google.maps.LatLng(18.450982709036793, -69.66269651031496),
+          map: loc,
+          draggable: true
+        });
+
+        google.maps.event.addListener(marker, 'dragend', function() {
+          $("#lat").val(marker.getPosition().lat());
+          $("#long").val(marker.getPosition().lng());
+        });
+      }
+</script>
     </body>
 </html>
