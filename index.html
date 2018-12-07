@@ -229,7 +229,10 @@
 
       <!-- FAB CLICK FUNCTION-->
       <script>
-        $( '#add' ).click(function() {initMap2();dialog.open();});
+        $( '#add' ).click(() => {
+          initMap2();
+          dialog.open();
+        });
       </script>
 
       <!-- Loader (Splashscreen) -->
@@ -243,26 +246,11 @@
       //]]>
       </script>
 
-      <!-- Firebase init script -->
-      <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyACan7b7VE-vmJwDl8fsQznbI9d9hJ4hDY",
-            authDomain: "sistema-reportes.firebaseapp.com",
-            databaseURL: "https://sistema-reportes.firebaseio.com",
-            projectId: "sistema-reportes",
-            storageBucket: "sistema-reportes.appspot.com",
-            messagingSenderId: "873908911986"
-        };
-        firebase.initializeApp(config);
-        const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true });
-      </script>
-
+      <!-- Add report dialog -->
       <paper-dialog id="dialog">
         <iron-form id="form1">
+          <h2>Reportar tragedia</h2></br>
           <paper-dialog-scrollable>
-            <h2>Reportar tragedia</h2></br>
             <form action="/foo" method="get">
               <div id="m">
                 <div id="loc"></div>
@@ -286,6 +274,7 @@
         </iron-form>
       </paper-dialog>
       
+      <!-- Map embedded -->
       <script type="text/javascript">
           function initMap2() {
               var loc = new google.maps.Map(document.getElementById('loc'), {
