@@ -46,6 +46,10 @@
       <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
       <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
 
+      <!-- Init API and db -->
+      <script src="js/initdb.js"></script>
+      <script src="js/api.js"></script>
+
       <style type="text/css">
         #map {
           height: 100%;
@@ -70,7 +74,6 @@
       <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
 
     </head>
-
     <body>
 
       <!-- Preloader (Splashscreen) -->
@@ -100,7 +103,7 @@
           <paper-item>
             <iron-icon icon="help" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
             <paper-item-body>
-            <div class="item">Ayuda</div>
+            <div id="downloader" class="item">Ayuda</div>
             </paper-item-body>
           </paper-item>
           <paper-item>
@@ -130,6 +133,15 @@
 
           <script>
 
+            // var jsonMarkers = getMarkers();
+            // console.log(jsonMarkers);
+            // console.log(jsonMarkers.length);
+            // var locations = [];
+
+            // for (let i = 0; i < jsonMarkers.length; i++) {
+            //   console.log(jsonMarkers[i]);              
+            // }
+
           var locations = [
               ['Robo', 'Monte Plata/Bayaguana', 18.755663, -69.636712, "descripcion", 2],
               ['Asaltos', 'Santo Domingo Este/La caleta', 18.451022, -69.662779, "descripcion", 1],
@@ -151,29 +163,29 @@
 
               function initMap() {
 
-              map = new google.maps.Map(document.getElementById('map'), {
-                center: new google.maps.LatLng(19.118231, -70.367653),
-                zoom: 8
-              });
-
-              for (var i = 0; i < locations.length; i++) {
-                var infowindow = new google.maps.InfoWindow({
-                  content: "<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
+                map = new google.maps.Map(document.getElementById('map'), {
+                  center: new google.maps.LatLng(19.118231, -70.367653),
+                  zoom: 8
                 });
 
-                marker = new google.maps.Marker({
-                  position: {lat: locations[i][2], lng: locations[i][3]},
-                  map: this.map
-                });
+                for (var i = 0; i < locations.length; i++) {
+                  var infowindow = new google.maps.InfoWindow({
+                    content: "<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
+                  });
 
-                google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                    return function () {
-                        infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
-                        infowindow.open(Map, marker);
-                    }
-                })(marker, i));
+                  marker = new google.maps.Marker({
+                    position: {lat: locations[i][2], lng: locations[i][3]},
+                    map: this.map
+                  });
 
-                markers.push(marker);
+                  google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                      return function () {
+                          infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><p>"+locations[i][4]+"</p><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
+                          infowindow.open(Map, marker);
+                      }
+                  })(marker, i));
+
+                  markers.push(marker);
               }
 
               var markerCluster = new MarkerClusterer(map, markers,
@@ -294,8 +306,7 @@
             }
       </script>
 
-      <script src="js/initdb.js"></script>
-      <script src="js/api.js"></script>
+      
       <script src="main.js"></script>
 
     </body>
