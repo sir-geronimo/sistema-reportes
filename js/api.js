@@ -39,8 +39,10 @@ function saveReport(data, id) {
 
 function addReport(data) {
     db.collection(data['collection']).add({
-        date: data['date'],
+        type: data['type'],        
         description: data['description'],
+        date: data['date'],
+        quantity: data['quantity'],
         location: new firebase.firestore.GeoPoint(data['latitude'], data['longitude'])
         // userId: "wySJyZe5P2XzFCYb7rxs"
     });
@@ -52,13 +54,16 @@ function updateReport(data, id) {
     var docRef = db.collection(data['collection']).doc(id);
 
     docRef.set({
-        date: data['date'],
+        type: data['type'],
         description: data['description'],
+        date: data['date'],
+        quantity: ['quantity'],
         location: new firebase.firestore.GeoPoint(data['latitude'], data['longitude'])
         // userId: "wySJyZe5P2XzFCYb7rxs"
-    });
+    }, { merge : true });
     return "Done update"
 }
+
 
 function getMarkers() {
     var markers = [];
@@ -66,8 +71,6 @@ function getMarkers() {
         querySnapshot.forEach(doc => {
             markers.push(doc.data());
         });
-        var jsonMarkers = JSON.stringify(markers);
-        console.log(jsonMarkers);
     })
     .catch(function(error) {
         console.error(error);
