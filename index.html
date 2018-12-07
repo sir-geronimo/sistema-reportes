@@ -92,7 +92,6 @@
             </paper-item-body>
           </paper-item>
           <!-- Drawer Items -->
-<<<<<<< HEAD
           <paper-item>
             <iron-icon icon="reply" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
             <paper-item-body>
@@ -100,130 +99,6 @@
             </paper-item-body>
           </paper-item>
         </section>
-=======
-     <paper-item>
-      <iron-icon icon="reply" style="padding-right:16px;color: rgba(0, 0, 0, 0.54);"></iron-icon>
-      <paper-item-body>
-      <div class="item">Cerrar sesion</div>
-      </paper-item-body>
-    </paper-item>
-
-
-            </section>
-<!-- Main section -->
-
-      <section id="section1" main>
-        <paper-toolbar id="core_toolbar">
-          <paper-icon-button icon="menu" id="core_icon_button" paper-drawer-toggle></paper-icon-button>
-          <!-- Title in the Toolbar -->
-          <div id="div" flex class="ttitle">Mapa de zonas</div>
-        </paper-toolbar>
-
-
-  <div id="map"></div>  
-
-    <script>
-
-     var locations = [
-        ['Quisqueya Sin Miseria', 'Monte Plata/Bayaguana', 18.755663, -69.636712, "img/CAIPI.jpg"],
-        ['Quisqueya Aprende Contigo', 'Santo Domingo Este/La caleta', 18.451022, -69.662779, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'Santo Domingo/Los rios', 18.490402, -69.958537, "img/image.jpg"],
-        ['Quisqueya Aprende Contigo', 'San Juan/ San Juan de la maguana', 18.791253, -71.225053, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'San Cristóbal/Palenque', 18.425169, -69.421936, "img/image.jpg"],
-        ['Quisqueya Sin Miseria', 'La vega/Rincon', 19.118231, -70.367653, "img/CAIPI.jpg"],
-        ['Quisqueya Aprende Contigo', 'Monte Cristi/Villa Garcia', 19.802750, -71.570664, "img/foto.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722850, -70.493688, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722821, -70.493700, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722900, -70.493888, "img/image.jpg"],
-        ['Quisqueya Empieza Contigo', 'Puerto Plata/Sosúa', 19.722800, -70.493900, "img/image.jpg"],
-        ['Quisqueya Aprende Contigo', 'Samana', 19.202861, -69.340292, "img/foto.jpg"],
-        ['Oficina Principal Quisqueya Aprende Contigo', 'Punta Cana/Veron', 18.596230, -68.444850, "img/foto.jpg"]
-        ];
-
-        var map, marker;
-        var markers = [];
-
-        function initMap() {
-
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(19.118231, -70.367653),
-          zoom: 8
-        });
-
-        for (var i = 0; i < locations.length; i++) {
-          var infowindow = new google.maps.InfoWindow({
-            content: "<div class='content card card-user'><div class='container-fluid'><img style='width: 200px;border: 1px solid #336699;max-height:215px;overflow:auto;' src='"+locations[i][4]+"'><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>"
-          });
-
-          marker = new google.maps.Marker({
-            position: {lat: locations[i][2], lng: locations[i][3]},
-            map: this.map
-          });
-
-          google.maps.event.addListener(marker, 'click', (function (marker, i) {
-              return function () {
-                  infowindow.setContent("<div class='content card card-user'><div class='container-fluid'><img style='width: 200px;border: 1px solid #336699;max-height:215px;overflow:auto;' src='"+locations[i][4]+"'><div><b><h4 style='margin-top:5px;'>"+locations[i][0]+"</h4><p>"+locations[i][1]+"</p></div></div>");
-                  infowindow.open(Map, marker);
-              }
-          })(marker, i));
-
-          markers.push(marker);
-        }
-
-         var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-      
-  }
-
-      function downloadUrl(url, callback) {
-        var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
-
-        request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-          }
-        };
-
-        request.open('GET', url, true);
-        request.send(null);
-      }
-
-      function doNothing() {}
-    </script>
-    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBmpP5EeQXKQAxFb-GBrSxMaDdr8DOg5-w&callback=initMap">
-    </script>
-
-
-          <!-- Github FAB -->
-<style is="custom-style">
-  paper-fab.blue {
-    --paper-fab-background: var(--paper-light-blue-800);
-    --paper-fab-keyboard-focus-background: var(--paper-light-blue-900);
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-  }
-</style>
-          
-<paper-fab icon="add" id="add" title="addZone" class="blue"></paper-fab>
-
-      </section>
-    </paper-drawer-panel>
-
-        <!-- Scripts -->
-
-        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>   <!-- Import jQuery -->
-        <script src="loader.js"></script>
->>>>>>> master
         
         <!-- Main section -->
         <section id="section1" main>
