@@ -1,7 +1,7 @@
 
 var btn = document.getElementById("btn");
 btn.addEventListener("click", function(){
-    console.log(getAll('users'));
+    getMarkers();
 });
 
 var today = new Date() 

@@ -14,15 +14,18 @@ function getAll(collection) {
 function getById(id, collection) {
     var docRef = db.collection(collection).doc(id);
 
+    var docs = []
     docRef.get().then(function(doc){
         if(doc.exists) {
-            return doc.data();
+            docs.push(doc.data());
         } else {
             console.error("No exists")
         }
     }).catch(function(error) {
         console.error(error);
     });
+
+    return docs;
 }
 
 function saveReport(data, id) {
@@ -57,18 +60,23 @@ function updateReport(data, id) {
     return "Done update"
 }
 
-function exportMarkers() {
-    var docs = [];
+function getMarkers() {
+    var markers = [];
     db.collection("reports").get().then(function(querySnapshot) {
         querySnapshot.forEach(doc => {
-            docs.push(doc.data());
+            markers.push(doc.data());
         });
-        var markers = JSON.stringify(docs);
+        var jsonMarkers = JSON.stringify(markers);
+        console.log(jsonMarkers);
     })
     .catch(function(error) {
         console.error(error);
     });
-
-    return docs;
     
+    return markers;
+    
+}
+
+function registerUser(data) {
+
 }
