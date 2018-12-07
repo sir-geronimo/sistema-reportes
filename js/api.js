@@ -1,12 +1,14 @@
 function getAll(collection) {
+    var docs = [];
     db.collection(collection).get().then(function(querySnapshot) {
-        querySnapshot.forEach(function(doc) {
-            console.log(doc.data());
-        });
+        querySnapshot.forEach(doc => {
+            docs.push(doc.data());
+        })
     })
     .catch(function(error) {
         console.error(error);
     });
+    return docs;
 }
 
 function getById(id, collection) {
@@ -14,9 +16,9 @@ function getById(id, collection) {
 
     docRef.get().then(function(doc){
         if(doc.exists) {
-            console.log(doc.data());
+            return doc.data();
         } else {
-            console.error("No exist")
+            console.error("No exists")
         }
     }).catch(function(error) {
         console.error(error);
@@ -25,7 +27,6 @@ function getById(id, collection) {
 
 function saveReport(data, id) {
     
-    // Tobe continued
     if (id == null) {
         return addReport(data);    
     } else {
@@ -44,7 +45,7 @@ function addReport(data) {
     return "Done add"
 }
 
-function updateReport(id, data) {
+function updateReport(data, id) {
     var docRef = db.collection(data['collection']).doc(id);
 
     docRef.set({
@@ -54,4 +55,20 @@ function updateReport(id, data) {
         userId: "wySJyZe5P2XzFCYb7rxs"
     });
     return "Done update"
+}
+
+function exportMarkers() {
+    var docs = [];
+    db.collection("reports").get().then(function(querySnapshot) {
+        querySnapshot.forEach(doc => {
+            docs.push(doc.data());
+        });
+        var markers = JSON.stringify(docs);
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+
+    return docs;
+    
 }
